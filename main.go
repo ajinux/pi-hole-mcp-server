@@ -13,7 +13,19 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
+// Build-time variables injected via ldflags during compilation
+var (
+	version = "dev"
+	commit  = "unknown"
+	date    = "unknown"
+)
+
 func main() {
+	log.Printf(
+		"starting pihole-mcp server version=%s commit=%s built=%s",
+		version, commit, date,
+	)
+
 	// Load configuration
 	cfg := config.Load()
 

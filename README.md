@@ -13,14 +13,16 @@ Built to monitor home network activity and investigate DNS queries using AI. Com
 
 Pi-hole integration (network stats, client monitoring, domain analytics) + Enhanced domain intelligence (DNS records, WHOIS, OSINT prompts) + AI-powered analysis via MCP
 
-## 📦 Prerequisites
-
-- **Go 1.21+** - [Download](https://golang.org/dl/)
-- **Pi-hole instance** - [Install](https://pi-hole.net/)
-- **Pi-hole API password** - Found in `/etc/pihole/setupVars.conf`
-- **MCP-compatible client** - Supports Streamable HTTP (not stdio). See [MCP docs](https://modelcontextprotocol.io/) for client setup
-
 ## 🚀 Installation
+
+### Quick Install (Recommended)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ajinux/pi-hole-mcp-server/main/install.sh | sh
+```
+
+<details>
+<summary>Build from Source</summary>
 
 ### 1. Clone the Repository
 
@@ -38,12 +40,24 @@ go mod download
 ### 3. Build the Server
 
 ```bash
-go build -o pi-hole-mcp-server main.go
+make build
+```
+
+</details>
+
+
+## ▶️ Run
+```
+ $ pihole-mcp
+2025/12/14 17:40:39 starting pihole-mcp version=v0.1.0-dirty commit=961ceed built=2025-12-14T11:54:53Z
+2025/12/14 17:40:40 obtained a new pi-hole session token successfully
+2025/12/14 17:40:40 Starting Pi-hole MCP server on http://localhost:8081
+2025/12/14 17:40:40 Connected to Pi-hole at: http://192.168.0.111/api
 ```
 
 ## ⚙️ Configuration
 
-Create a `.env` file:
+Create a `.env` file or set it env or pass it as arg (check pihole-mcp --help):
 
 ```env
 PIHOLE_URL=http://192.168.1.100:83/api
@@ -55,17 +69,6 @@ You can use pi-phone admin dashboard to get new password
 ![pi-hole password](/assets/pi_hole_password.png)
 
 **Note:** This server uses Streamable HTTP transport. Configure your MCP client accordingly (see MCP documentation for client-specific setup)
-
-## 🎮 Usage
-
-Start the server:
-```bash
-go run main.go
-# or
-./pi-hole-mcp-server
-```
-
-The server runs on `http://localhost:8081` by default. Configure your MCP client to connect via Streamable HTTP.
 
 ## 🔧 Available Tools
 
@@ -98,7 +101,7 @@ Comprehensive OSINT analysis combining DNS records, WHOIS data, hosting infrastr
 
 ## 🙏 Acknowledgments
 
-Thanks to [Pi-hole developers](https://pi-hole.net/) for the network-wide ad blocking solution, [likexian](https://github.com/likexian/whois) for the WHOIS package, [Anthropic](https://www.anthropic.com/) for MCP, and the Go community.
+Thanks to [Pi-hole developers](https://pi-hole.net/) for the network-wide ad blocking solution, [likexian](https://github.com/likexian/whois) for the WHOIS package
 
 ## 📄 License
 

@@ -88,3 +88,4 @@ README.org
 pihole/client/auth_test.go
 
 dist/
+pihole-mcp
