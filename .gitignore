@@ -86,3 +86,5 @@ README.org
 .env
 
 pihole/client/auth_test.go
+
+dist/
